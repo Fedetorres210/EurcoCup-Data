@@ -9,33 +9,45 @@ from json import loads
 euro = APIRouter()
 
 @euro.get("/stages")
-def information():
-    results =  connection.Mid_project.Eurocup.find({},{"_id":0,"stage":1})
+def all_stages(teams:bool = True,stage=None):
+    if teams == True:
+        if stage != None:
+            results =  connection.databaseEuro2020.EurocupData.find({"stage":stage},{"_id":0,"team_name_home":1,"team_name_away":1})
+        else:
+          results =  connection.databaseEuro2020.EurocupData.find({},{"_id":0,"team_name_home":1,"team_name_away":1})  
+
+    else:
+        results =  connection.databaseEuro2020.EurocupData.find({},{"_id":0,"stage":1})
     return loads(json_util.dumps(results))
 
 @euro.get("/stage")
-def information(stage):
-    results =  connection.Mid_project.Eurocup.find({"stage":stage},{"_id":0})
-
+def one_stage(stage,home = None,away = None):
+    if home and away  != None:
+        results = connection.databaseEuro2020.EurocupData.find({"stage":stage,"team_name_home":home,"team_name_away":away},{"_id":0})
+        
+    elif home == None:
+        results = connection.databaseEuro2020.EurocupData.find({"stage":stage,"team_name_away":away},{"_id":0})
+    elif away == None:
+        results = connection.databaseEuro2020.EurocupData.find({"stage":stage,"team_name_home":home},{"_id":0})
+    
     return loads(json_util.dumps(results))
 
-@euro.get("/home_teams")
-def information():
-    results =  connection.Mid_project.Eurocup.find({},{"_id":0,"team_name_home":1,"stage":1})
+@euro.get("/stage_teams")
+def stage_teams(stage):
+    results =  connection.databaseEuro2020.EurocupData.find({"stage":stage},{"_id":0,"team_name_home":1,"team_name_away":1})
     return loads(json_util.dumps(results))
 
-@euro.get("/visit_teams")
-def information():
-    results =  connection.Mid_project.Eurocup.find({},{"_id":0,"team_name_away":1,"stage":1})
-    return loads(json_util.dumps(results))
+@euro.get("/team")
+def one_team(away):
+    results = connection.databaseEuro2020.EurocupData.find({"team_name_away":away},{"_id":0,"team_name_away":0,"team_name_home":0})
+    return loads(json_util.dumps(results[0]))
+    
+
+    
 
 
-@euro.get("/Home_team")
-def information(home_team):
-    results =  connection.Mid_project.Eurocup.find({"team_name_home":home_team},{"_id":0})
+@euro.get("/stats")
+def stats(stage,home):
+    results = connection.databaseEuro2020.EurocupData.find({"stage":stage,"team_name_home":home},{"_id":0,"team_name_home":0,"team_name_away":0,"stage":0,"pens":0,})
     return loads(json_util.dumps(results))
 
-@euro.get("/visit_team")
-def information(visit_team):
-    results =  connection.Mid_project.Eurocup.find({"team_name_away":visit_team},{"_id":0})
-    return loads(json_util.dumps(results))
