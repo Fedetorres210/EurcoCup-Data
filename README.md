@@ -9,6 +9,8 @@
  ## Table of content
  -----------------
  * Goals completed
+ * Data cleaning
+ * Mongo Database
  * Streamlit Dashboard
  * Requests API
 
@@ -17,13 +19,38 @@
 ## Goals completed
 ------
 ### L1
-* L1: Crear api en flask
+* L1: Crear api 
 * L1: Crear dashboard en streamlit
 * L1: Base de datos en MongoDB o PostgreSQL
 ### L2
 * L2: Tener la base de datos en el Cloud (Hay servicios gratis en MongoDB Atlas, Heroku Postgres, dentre otros)
 #
 -------
+
+## Data cleaning
+#
+### Match data
+
+For this project the required information was about every single match of the Eurcup 2020. For the comfort of the developer it was decided to use only stadistic of the game and not the specific events in each game.
+
+
+<img src="documents\img\Datacleaning.png">
+
+###### Especfic image of the datacleaning
+
+
+----- 
+
+## Mongo Database
+---
+### For this project it was decided to use the free databases of Atlas MongoDB.
+
+<img src="documents\img\mongo.png">
+
+
+
+
+
 
 ## Streamlit Dashboard
 ------
@@ -50,6 +77,10 @@ Every single one of the API requests.
 * URL/stage_teams
 * URL/team
 * URL/stats
+
+
+
+
 
 
 

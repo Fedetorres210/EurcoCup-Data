@@ -1,5 +1,5 @@
 import requests
-url = "https://apideployment1.herokuapp.com/"
+url = "http://127.0.0.1:8000"
 
 def list_of_stages(teams=False,stage=None):
     q= {'teams': teams,"stage":stage}

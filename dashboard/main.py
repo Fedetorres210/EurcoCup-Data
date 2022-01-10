@@ -32,7 +32,7 @@ if match:
 st.sidebar.image('https://www.diez.hn/binrepository/951x680/0c0/0d0/none/3014757/GHDU/000-9vg9k3_677991_20220102171136.jpg')
 
 
-#select_stage = st.selectbox("Select the Stage",set([stage["stage"] for stage in list_of_stages()]))
+
 
 
 
