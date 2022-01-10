@@ -37,15 +37,6 @@ def stage_teams(stage):
     results =  connection.databaseEuro2020.EurocupData.find({"stage":stage},{"_id":0,"team_name_home":1,"team_name_away":1})
     return loads(json_util.dumps(results))
 
-@euro.get("/team")
-def one_team(away):
-    results = connection.databaseEuro2020.EurocupData.find({"team_name_away":away},{"_id":0,"team_name_away":0,"team_name_home":0})
-    return loads(json_util.dumps(results[0]))
-    
-
-    
-
-
 @euro.get("/stats")
 def stats(stage,home):
     results = connection.databaseEuro2020.EurocupData.find({"stage":stage,"team_name_home":home},{"_id":0,"team_name_home":0,"team_name_away":0,"stage":0,"pens":0,})
